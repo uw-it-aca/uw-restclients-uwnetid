@@ -4,7 +4,7 @@ Interface for interacting with the UWNetID Subscription Web Service.
 
 import logging
 from uw_uwnetid.models import SubscriptionPermit, Subscription
-from uwnetid.subscription import get_netid_subscriptions
+from uw_uwnetid.subscription import get_netid_subscriptions
 
 
 logger = logging.getLogger(__name__)

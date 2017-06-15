@@ -2,9 +2,9 @@ from datetime import date
 from unittest import TestCase
 from uw_uwnetid.models import UwPassword, convert_seconds_to_days,\
     convert_days_to_seconds
-from restclients.uwnetid.password import get_uwnetid_password
+from uw_uwnetid.password import get_uwnetid_password
 from restclients_core.exceptions import DataFailureException
-from uw_pws.util import fdao_pws_override
+from uw_uwnetid.util import fdao_uwnetid_override
 
 
 @fdao_uwnetid_override

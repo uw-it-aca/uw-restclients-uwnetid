@@ -1,10 +1,10 @@
 from datetime import date
 from unittest import TestCase
 from uw_uwnetid.models import Subscription
-from uwnetid.subscription import get_email_forwarding, \
+from uw_uwnetid.subscription import get_email_forwarding, \
     get_netid_subscriptions, modify_subscription_status, update_subscription
 from restclients_core.exceptions import DataFailureException
-from uw_pws.util import fdao_pws_override
+from uw_uwnetid.util import fdao_uwnetid_override
 
 
 @fdao_uwnetid_override

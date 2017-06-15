@@ -1,8 +1,8 @@
 from unittest import TestCase
-from uwnetid.subscription_233 import get_office365edu_prod_subs,\
+from uw_uwnetid.subscription_233 import get_office365edu_prod_subs,\
     get_office365edu_test_subs
 from restclients_core.exceptions import DataFailureException
-from uw_pws.util import fdao_pws_override
+from uw_uwnetid.util import fdao_uwnetid_override
 
 
 @fdao_uwnetid_override

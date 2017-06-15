@@ -8,7 +8,7 @@ import json
 from dateutil.parser import parse
 from pytimeparse.timeparse import timeparse
 from uw_uwnetid.models import UwPassword
-from uwnetid import get_resource
+from uw_uwnetid import get_resource
 
 
 logger = logging.getLogger(__name__)

@@ -1,8 +1,8 @@
 from unittest import TestCase
-from uwnetid.subscription_60 import is_current_staff,\
+from uw_uwnetid.subscription_60 import is_current_staff,\
     is_current_faculty, get_kerberos_subs, is_current_clinician
 from restclients_core.exceptions import DataFailureException
-from uw_pws.util import fdao_pws_override
+from uw_uwnetid.util import fdao_uwnetid_override
 
 
 @fdao_uwnetid_override

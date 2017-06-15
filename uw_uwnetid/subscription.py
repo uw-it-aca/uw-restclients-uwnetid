@@ -7,7 +7,7 @@ import logging
 import json
 from uw_uwnetid.models import UwEmailForwarding, \
     Subscription, SubscriptionAction, SubscriptionPermit
-from uwnetid import get_resource, post_resource
+from uw_uwnetid import get_resource, post_resource
 
 
 logger = logging.getLogger(__name__)
