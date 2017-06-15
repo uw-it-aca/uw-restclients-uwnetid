@@ -20,7 +20,7 @@ def get_resource(url):
     if response.status != 200:
         raise DataFailureException(url, response.status, response.data)
 
-    #'Bug' with lib API causing requests with no/invalid user to return a 200
+    # 'Bug' with lib API causing requests with no/invalid user to return a 200
     if INVALID_USER_MSG in response.data:
         json_data = json.loads(response.data)
         raise DataFailureException(url, 404, json_data["errorMessage"])
@@ -40,7 +40,7 @@ def post_resource(url, body):
     if response.status != 200:
         raise DataFailureException(url, response.status, response.data)
 
-    #'Bug' with lib API causing requests with no/invalid user to return a 200
+    # 'Bug' with lib API causing requests with no/invalid user to return a 200
     if INVALID_USER_MSG in response.data:
         json_data = json.loads(response.data)
         raise DataFailureException(url, 404, json_data["errorMessage"])

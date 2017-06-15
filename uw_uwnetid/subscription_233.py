@@ -19,7 +19,8 @@ def get_office365edu_prod_subs(netid):
                                    Subscription.SUBS_CODE_OFFICE_365)
     if subs is not None:
         for subscription in subs:
-            if subscription.subscription_code == Subscription.SUBS_CODE_OFFICE_365:
+            if (subscription.subscription_code ==
+                    Subscription.SUBS_CODE_OFFICE_365):
                 return subscription
     return None
 
@@ -33,6 +34,7 @@ def get_office365edu_test_subs(netid):
                                    Subscription.SUBS_CODE_OFFICE_365_TEST)
     if subs is not None:
         for subscription in subs:
-            if subscription.subscription_code == Subscription.SUBS_CODE_OFFICE_365_TEST:
+            if (subscription.subscription_code ==
+                    Subscription.SUBS_CODE_OFFICE_365_TEST):
                 return subscription
     return None

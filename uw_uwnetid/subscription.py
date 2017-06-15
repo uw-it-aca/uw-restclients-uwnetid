@@ -18,9 +18,12 @@ def get_email_forwarding(netid):
     Return a restclients.models.uwnetid.UwEmailForwarding object
     on the given uwnetid
     """
-    subscriptions = get_netid_subscriptions(netid, Subscription.SUBS_CODE_U_FORWARDING)
+    subscriptions = get_netid_subscriptions(netid,
+                                            Subscription.
+                                            SUBS_CODE_U_FORWARDING)
     for subscription in subscriptions:
-        if subscription.subscription_code == Subscription.SUBS_CODE_U_FORWARDING:
+        if (subscription.subscription_code == Subscription.
+                SUBS_CODE_U_FORWARDING):
             return_obj = UwEmailForwarding()
             if subscription.data_value:
                 return_obj.fwd = subscription.data_value
