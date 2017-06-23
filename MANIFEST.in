@@ -1,0 +1,2 @@
+include uw_uwnetid/VERSION
+recursive-include uw_uwnetid *
