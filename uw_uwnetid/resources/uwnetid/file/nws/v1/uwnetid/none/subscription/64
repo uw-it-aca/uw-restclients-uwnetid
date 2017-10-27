@@ -1,0 +1,16 @@
+{
+  "uwNetID" : "wenqi",
+  "subscriptionList" : [
+    {
+      "subscriptionCode" : 64,
+      "subscriptionName" : "Duo Two-Factor Authentication",
+      "permitted" : false,
+      "statusCode" : 101,
+      "statusName" : "Unpermitted",
+      "actions" : [
+        "Show"
+      ]
+    }
+  ],
+  "timeStamp" : "Fri, 27 Oct 2017 10:32:05 -0700"
+}

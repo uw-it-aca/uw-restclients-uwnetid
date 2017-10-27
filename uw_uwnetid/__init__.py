@@ -5,18 +5,18 @@ the uwnetid subscription web service.
 
 import logging
 import json
-from uw_uwnetid.dao import UWNetID_DAO
 from restclients_core.exceptions import DataFailureException
+from uw_uwnetid.dao import UWNetID_DAO
 
 
 INVALID_USER_MSG = "No such NetID"
+DAO = UWNetID_DAO()
 logger = logging.getLogger(__name__)
 
 
 def get_resource(url):
-    response = UWNetID_DAO().getURL(url, {'Accept': 'application/json'})
+    response = DAO.getURL(url, {'Accept': 'application/json'})
     logger.info("GET %s ==status==> %s" % (url, response.status))
-
     if response.status != 200:
         raise DataFailureException(url, response.status, response.data)
 
@@ -31,7 +31,7 @@ def get_resource(url):
 
 
 def post_resource(url, body):
-    response = UWNetID_DAO().postURL(url, {
+    response = DAO.postURL(url, {
         'Content-Type': 'application/json',
         'Acept': 'application/json',
     }, body)

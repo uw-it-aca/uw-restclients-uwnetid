@@ -38,11 +38,11 @@ class KerberosSubsTest(TestCase):
         self.assertFalse(subs.permitted)
 
     def test_invalid_user(self):
-        #Testing error message in a 200 response
+        # Testing error message in a 200 response
         self.assertRaises(DataFailureException,
                           is_current_staff,
                           "invalidnetid")
-        #Testing non-200 response
+        # Testing non-200 response
         self.assertRaises(DataFailureException,
                           is_current_faculty,
                           "jnewstudent")

@@ -31,6 +31,7 @@ class UwEmailForwarding(models.Model):
 
 class Subscription(models.Model):
     SUBS_CODE_KERBEROS = 60
+    SUBS_CODE_2FA = 64
     SUBS_CODE_U_FORWARDING = 105
     SUBS_CODE_GOOGLE_APPS = 144
     SUBS_CODE_GOOGLE_APPS_TEST = 145
@@ -187,15 +188,15 @@ class SubscriptionPermit(models.Model):
     def json_data(self):
         data = {
             'type': 'permit',
-            'mode': mode,
-            'categoryCode': category_code,
-            'categoryName': category_name,
-            'statusCode': status_code,
-            'statusName': status_name,
+            'mode': self.mode,
+            'categoryCode': self.category_code,
+            'categoryName': self.category_name,
+            'statusCode': self.status_code,
+            'statusName': self.status_name,
         }
 
-        if data_value:
-            data['dataValue'] = data_value
+        if self.data_value:
+            data['dataValue'] = self.data_value
 
         return data
 
@@ -228,7 +229,7 @@ class SubscriptionAction(models.Model):
                               default=SHOW)
 
     def json_data(self):
-        return action
+        return self.action
 
 
 def convert_seconds_to_days(interval):

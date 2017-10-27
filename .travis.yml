@@ -13,7 +13,7 @@ before_script:
 - pip install commonconf
 - pip install python-coveralls
 script:
-- pep8 uw_uwnetid/ --exclude=uw_uwnetid/tests
+- pep8 uw_uwnetid/
 - coverage run --source=uw_uwnetid uw_uwnetid/test.py -v
 after_script:
 - coveralls
@@ -22,7 +22,6 @@ before_deploy:
 - echo $TRAVIS_TAG > uw_uwnetid/VERSION
 deploy:
   provider: pypi
-  server: https://pypi.python.org/pypi
   user: uw-it-aca
   skip_cleanup: true
   password:

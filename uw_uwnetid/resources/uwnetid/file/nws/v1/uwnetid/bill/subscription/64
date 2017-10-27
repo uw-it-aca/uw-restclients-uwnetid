@@ -1,0 +1,27 @@
+{
+  "uwNetID" : "bill",
+  "subscriptionList" : [
+    {
+      "subscriptionCode" : 64,
+      "subscriptionName" : "Duo Two-Factor Authentication",
+      "permitted" : true,
+      "statusCode" : 20,
+      "statusName" : "Active",
+      "actions" : [
+        "Show"
+      ],
+      "dataValue" : "user_id=DU7677F1PH8",
+      "permits" : [
+        {
+          "type" : "permit",
+          "mode" : "implicit",
+          "categoryCode" : 4,
+          "categoryName" : "Staff",
+          "statusCode" : 1,
+          "statusName" : "current"
+        }
+      ]
+    }
+  ],
+  "timeStamp" : "Thu, 26 Oct 2017 18:10:12 -0700"
+}

@@ -2,18 +2,13 @@
 Interface for interacting with the UWNetID Subscription Web Service.
 """
 
-import logging
 from uw_uwnetid.models import SubscriptionPermit, Subscription
 from uw_uwnetid.subscription import get_netid_subscriptions
 
 
-logger = logging.getLogger(__name__)
-
-
 def get_kerberos_subs(netid):
     """
-    Return a restclients.models.uwnetid.Subscription objects
-    on the given uwnetid
+    Return a Subscription object on the given uwnetid
     """
     subs = get_netid_subscriptions(netid, Subscription.SUBS_CODE_KERBEROS)
     if subs is not None:
