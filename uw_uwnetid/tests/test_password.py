@@ -47,7 +47,7 @@ class UwPasswordTest(TestCase):
         self.assertTrue(pw.is_kerb_status_pending())
         pw.kerb_status = "Other"
         self.assertTrue(pw.is_kerb_status_other())
-        pw.kerb_status ="Suspended"
+        pw.kerb_status = "Suspended"
         self.assertTrue(pw.is_kerb_status_suspended())
 
     def test_get_uwnetid_password(self):
