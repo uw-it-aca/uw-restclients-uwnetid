@@ -57,7 +57,10 @@ def is_current_faculty(netid):
 
 
 def is_current_clinician(netid):
-    permits = get_kerberos_subs_permits(netid)
+    return has_clinician_in_permits(get_kerberos_subs_permits(netid))
+
+
+def has_clinician_in_permits(permits):
     if permits is None:
         return False
     for permit in permits:
