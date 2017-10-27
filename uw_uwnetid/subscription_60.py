@@ -37,7 +37,10 @@ def get_kerberos_subs_permits(netid):
 
 
 def is_current_staff(netid):
-    permits = get_kerberos_subs_permits(netid)
+    return has_staff_in_permits(get_kerberos_subs_permits(netid))
+
+
+def has_staff_in_permits(permits):
     if permits is None:
         return False
     for permit in permits:
@@ -47,7 +50,10 @@ def is_current_staff(netid):
 
 
 def is_current_faculty(netid):
-    permits = get_kerberos_subs_permits(netid)
+    return has_faculty_in_permits(get_kerberos_subs_permits(netid))
+
+
+def has_faculty_in_permits(permits):
     if permits is None:
         return False
     for permit in permits:
