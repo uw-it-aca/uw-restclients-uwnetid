@@ -11,7 +11,8 @@ subs_code = Subscription.SUBS_CODE_2FA
 
 def get_2fa_subs(netid):
     """
-    Return a Subscription object on the given uwnetid
+    @return a Subscription object if the subscription for the given uwnetid
+            exists. Return None if not exist or an Exception.
     """
     subs = get_netid_subscriptions(netid, subs_code)
     if subs is not None:
