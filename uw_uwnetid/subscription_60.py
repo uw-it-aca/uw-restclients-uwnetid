@@ -6,11 +6,17 @@ from uw_uwnetid.models import SubscriptionPermit, Subscription
 from uw_uwnetid.subscription import get_netid_subscriptions
 
 
+subs_code = Subscription.SUBS_CODE_KERBEROS
+
+
 def get_kerberos_subs(netid):
     """
     Return a Subscription object on the given uwnetid
     """
-    subs = get_netid_subscriptions(netid, Subscription.SUBS_CODE_KERBEROS)
+    return select_kerberos(get_netid_subscriptions(netid, subs_code))
+
+
+def select_kerberos(subs):
     if subs is not None:
         for subscription in subs:
             if (subscription.subscription_code ==
