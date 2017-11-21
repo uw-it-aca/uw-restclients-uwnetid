@@ -155,7 +155,11 @@ class Subscription(models.Model):
 class SubscriptionPermit(models.Model):
     STAFF_C_CODE = 4
     FACULTY_C_CODE = 5
+    DEPARTMENT_C_CODE = 11
     CLINICIAN_C_CODE = 13
+    STUDENT_EMPLOYEE_C_CODE = 14
+    AFFILIATE_EMPLOYEE_C_CODE = 15
+    ALUMNI_C_CODE = 16
     CLINICIAN_NETID_C_CODE = 17
     CURRENT_STATUS_CODE = 1
     IMPLICIT_MODE = "implicit"
@@ -175,6 +179,20 @@ class SubscriptionPermit(models.Model):
 
     def is_category_faculty(self):
         return self.category_code == SubscriptionPermit.FACULTY_C_CODE
+
+    def is_category_alumni(self):
+        return self.category_code == SubscriptionPermit.ALUMNI_C_CODE
+
+    def is_category_department(self):
+        return self.category_code == SubscriptionPermit.DEPARTMENT_C_CODE
+
+    def is_category_student_employee(self):
+        return (
+            self.category_code == SubscriptionPermit.STUDENT_EMPLOYEE_C_CODE)
+
+    def is_category_affiliate_employee(self):
+        return (
+            self.category_code == SubscriptionPermit.AFFILIATE_EMPLOYEE_C_CODE)
 
     def is_category_clinician(self):
         return self.category_code == SubscriptionPermit.CLINICIAN_C_CODE
