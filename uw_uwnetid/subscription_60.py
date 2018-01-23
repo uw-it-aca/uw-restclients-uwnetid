@@ -3,7 +3,8 @@ Interface for interacting with the UWNetID Subscription Web Service.
 """
 
 from uw_uwnetid.models import SubscriptionPermit, Subscription
-from uw_uwnetid.subscription import get_netid_subscriptions
+from uw_uwnetid.subscription import get_netid_subscriptions,\
+    select_subscription
 
 
 subs_code = Subscription.SUBS_CODE_KERBEROS
@@ -17,12 +18,7 @@ def get_kerberos_subs(netid):
 
 
 def select_kerberos(subs):
-    if subs is not None:
-        for subscription in subs:
-            if (subscription.subscription_code ==
-                    Subscription.SUBS_CODE_KERBEROS):
-                return subscription
-    return None
+    return select_subscription(subs_code, subs)
 
 
 def get_kerberos_subs_permits(netid):
