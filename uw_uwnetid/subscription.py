@@ -15,8 +15,7 @@ logger = logging.getLogger(__name__)
 
 def get_email_forwarding(netid):
     """
-    Return a restclients.models.uwnetid.UwEmailForwarding object
-    on the given uwnetid
+    deprecated: use subscription_105.get_email_forwarding
     """
     subscriptions = get_netid_subscriptions(netid,
                                             Subscription.
@@ -42,6 +41,17 @@ def get_netid_subscriptions(netid, subscription_codes):
     url = _netid_subscription_url(netid, subscription_codes)
     response = get_resource(url)
     return _json_to_subscriptions(response)
+
+
+def select_subscription(subs_code, subscriptions):
+    """
+    Return the uwnetid.subscription object with the subs_code.
+    """
+    if subs_code and subscriptions:
+        for subs in subscriptions:
+            if (subs.subscription_code == subs_code):
+                return subs
+    return None
 
 
 def modify_subscription_status(netid, subscription_code, status):
