@@ -15,6 +15,22 @@
                     "type": "permit"
                 },
                 {
+                    "type": "permit",
+                    "mode": "implicit",
+                    "categoryCode": 2,
+                    "categoryName": "Graduate",
+                    "statusCode": 3,
+                    "statusName": "former"
+                },
+                {
+                    "type": "permit",
+                    "mode": "implicit",
+                    "categoryCode": 14,
+                    "categoryName": "Student Employee",
+                    "statusCode": 3,
+                    "statusName": "former"
+                },
+                {
                     "categoryCode": 28,
                     "categoryName": "Development Affiliate",
                     "mode": "implicit",
