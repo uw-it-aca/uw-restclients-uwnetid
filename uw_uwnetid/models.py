@@ -153,6 +153,8 @@ class Subscription(models.Model):
 
 
 class SubscriptionPermit(models.Model):
+    UNDERGRAD_C_CODE = 1
+    GRAD_C_CODE = 2
     STAFF_C_CODE = 4
     FACULTY_C_CODE = 5
     DEPARTMENT_C_CODE = 11
@@ -161,7 +163,13 @@ class SubscriptionPermit(models.Model):
     AFFILIATE_EMPLOYEE_C_CODE = 15
     ALUMNI_C_CODE = 16
     CLINICIAN_NETID_C_CODE = 17
+    EO_TECHFEE_STUD_C_CODE = 18
+    EO_NON_TECHFEE_STUD_C_CODE = 19
+    APPLICANT_C_CODE = 20
+    RETIREE_C_CODE = 34
+    MEDICAL_RESIDENT_C_CODE = 145
     CURRENT_STATUS_CODE = 1
+    FORMER_STATUS_CODE = 3
     IMPLICIT_MODE = "implicit"
 
     mode = models.CharField(max_length=16)
@@ -200,8 +208,17 @@ class SubscriptionPermit(models.Model):
     def is_category_clinician_netid_only(self):
         return self.category_code == SubscriptionPermit.CLINICIAN_NETID_C_CODE
 
+    def is_category_alumni(self):
+        return self.category_code == SubscriptionPermit.ALUMNI_C_CODE
+
+    def is_category_retiree(self):
+        return self.category_code == SubscriptionPermit.RETIREE_C_CODE
+
     def is_status_current(self):
         return self.status_code == SubscriptionPermit.CURRENT_STATUS_CODE
+
+    def is_status_former(self):
+        return self.status_code == SubscriptionPermit.FORMER_STATUS_CODE
 
     def json_data(self):
         data = {
