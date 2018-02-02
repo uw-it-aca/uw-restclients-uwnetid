@@ -1,5 +1,5 @@
 {
-  "uwNetID": "jbothell",
+  "uwNetID": "retiree",
   "subscriptionList": [
     {
       "subscriptionCode": 60,
@@ -18,14 +18,14 @@
           "mode": "implicit",
           "categoryCode": 1,
           "categoryName": "Undergraduate",
-          "statusCode": 1,
-          "statusName": "current"
+          "statusCode": 3,
+          "statusName": "former"
         },
         {
           "type": "permit",
           "mode": "implicit",
-          "categoryCode": 1,
-          "categoryName": "Undergraduate",
+          "categoryCode": 2,
+          "categoryName": "Graduate",
           "statusCode": 3,
           "statusName": "former"
         },
@@ -34,16 +34,16 @@
           "mode": "implicit",
           "categoryCode": 4,
           "categoryName": "Staff",
-          "statusCode": 1,
-          "statusName": "current"
+          "statusCode": 3,
+          "statusName": "former"
         },
         {
           "type": "permit",
           "mode": "implicit",
-          "categoryCode": 16,
-          "categoryName": "Alumni",
-          "statusCode": 1,
-          "statusName": "current"
+          "categoryCode": 5,
+          "categoryName": "Faculty",
+          "statusCode": 3,
+          "statusName": "former"
         },
         {
           "type": "permit",
@@ -52,6 +52,24 @@
           "categoryName": "non-Techfee Student",
           "statusCode": 3,
           "statusName": "former"
-        }]
-   }]
+        },
+        {
+          "type": "permit",
+          "mode": "implicit",
+          "categoryCode": 28,
+          "categoryName": "Development Affiliate",
+          "statusCode": 1,
+          "statusName": "current"
+        },
+        {
+          "type": "permit",
+          "mode": "implicit",
+          "categoryCode": 34,
+          "categoryName": "Retired Staff",
+          "statusCode": 1,
+          "statusName": "current"
+        }
+      ]
+    }],
+  "timeStamp": "Fri, 02 Feb 2018 13:33:30 -0800"
 }

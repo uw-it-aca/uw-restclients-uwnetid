@@ -64,7 +64,6 @@ def is_former_grad(subs_permits):
                                SubscriptionPermit.FORMER_STATUS_CODE)
 
 
-
 def is_current_undergrad(subs_permits):
     return _has_desired_permit(subs_permits,
                                SubscriptionPermit.UNDERGRAD_C_CODE,
@@ -77,7 +76,6 @@ def is_former_undergrad(subs_permits):
                                SubscriptionPermit.FORMER_STATUS_CODE)
 
 
-
 def is_current_staff(subs_permits):
     return _has_desired_permit(subs_permits,
                                SubscriptionPermit.STAFF_C_CODE,
@@ -88,7 +86,6 @@ def is_former_staff(subs_permits):
     return _has_desired_permit(subs_permits,
                                SubscriptionPermit.STAFF_C_CODE,
                                SubscriptionPermit.FORMER_STATUS_CODE)
-
 
 
 def is_current_faculty(subs_permits):

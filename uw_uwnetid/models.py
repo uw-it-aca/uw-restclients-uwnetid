@@ -182,14 +182,14 @@ class SubscriptionPermit(models.Model):
     def is_mode_implicit(self):
         return self.mode == SubscriptionPermit.IMPLICIT_MODE
 
+    def is_category_alumni(self):
+        return self.category_code == SubscriptionPermit.ALUMNI_C_CODE
+
     def is_category_staff(self):
         return self.category_code == SubscriptionPermit.STAFF_C_CODE
 
     def is_category_faculty(self):
         return self.category_code == SubscriptionPermit.FACULTY_C_CODE
-
-    def is_category_alumni(self):
-        return self.category_code == SubscriptionPermit.ALUMNI_C_CODE
 
     def is_category_department(self):
         return self.category_code == SubscriptionPermit.DEPARTMENT_C_CODE
@@ -208,8 +208,11 @@ class SubscriptionPermit(models.Model):
     def is_category_clinician_netid_only(self):
         return self.category_code == SubscriptionPermit.CLINICIAN_NETID_C_CODE
 
-    def is_category_alumni(self):
-        return self.category_code == SubscriptionPermit.ALUMNI_C_CODE
+    def is_category_grad(self):
+        return self.category_code == SubscriptionPermit.GRAD_C_CODE
+
+    def is_category_undergrad(self):
+        return self.category_code == SubscriptionPermit.UNDERGRAD_C_CODE
 
     def is_category_retiree(self):
         return self.category_code == SubscriptionPermit.RETIREE_C_CODE

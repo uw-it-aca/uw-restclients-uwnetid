@@ -1,5 +1,5 @@
 {
-  "uwNetID": "jbothell",
+  "uwNetID": "jinternational",
   "subscriptionList": [
     {
       "subscriptionCode": 60,
@@ -16,8 +16,8 @@
         {
           "type": "permit",
           "mode": "implicit",
-          "categoryCode": 1,
-          "categoryName": "Undergraduate",
+          "categoryCode": 2,
+          "categoryName": "Graduate",
           "statusCode": 1,
           "statusName": "current"
         },
@@ -34,8 +34,24 @@
           "mode": "implicit",
           "categoryCode": 4,
           "categoryName": "Staff",
+          "statusCode": 3,
+          "statusName": "former"
+        },
+        {
+          "type": "permit",
+          "mode": "implicit",
+          "categoryCode": 14,
+          "categoryName": "Student Employee",
           "statusCode": 1,
           "statusName": "current"
+        },
+        {
+          "type": "permit",
+          "mode": "implicit",
+          "categoryCode": 14,
+          "categoryName": "Student Employee",
+          "statusCode": 3,
+          "statusName": "former"
         },
         {
           "type": "permit",
@@ -48,10 +64,29 @@
         {
           "type": "permit",
           "mode": "implicit",
-          "categoryCode": 19,
-          "categoryName": "non-Techfee Student",
+          "categoryCode": 28,
+          "categoryName": "Development Affiliate",
+          "statusCode": 1,
+          "statusName": "current"
+        },
+        {
+          "type": "permit",
+          "mode": "implicit",
+          "categoryCode": 28,
+          "categoryName": "Development Affiliate",
           "statusCode": 3,
           "statusName": "former"
-        }]
-   }]
+        },
+        {
+          "type": "permit",
+          "mode": "implicit",
+          "categoryCode": 49,
+          "categoryName": "UW Exchange User",
+          "statusCode": 1,
+          "statusName": "current"
+        }
+      ]
+    }
+  ],
+  "timeStamp": "Fri, 02 Feb 2018 13:14:02 -0800"
 }
