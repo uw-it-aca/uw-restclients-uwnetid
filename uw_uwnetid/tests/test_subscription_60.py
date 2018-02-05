@@ -95,7 +95,7 @@ class KerberosSubsTest(TestCase):
         permits = get_kerberos_subs_permits("jinternational")
         self.assertTrue(is_current_grad(permits))
         self.assertTrue(is_former_undergrad(permits))
-        self.assertTrue(is_former_student_employee(permits))
+        self.assertTrue(is_current_student_employee(permits))
         self.assertTrue(is_former_staff(permits))
         self.assertFalse(is_current_faculty(permits))
         self.assertFalse(is_current_clinician(permits))

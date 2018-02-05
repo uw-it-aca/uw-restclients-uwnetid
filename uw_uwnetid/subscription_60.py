@@ -61,7 +61,8 @@ def is_current_grad(subs_permits):
 def is_former_grad(subs_permits):
     return _has_desired_permit(subs_permits,
                                SubscriptionPermit.GRAD_C_CODE,
-                               SubscriptionPermit.FORMER_STATUS_CODE)
+                               SubscriptionPermit.FORMER_STATUS_CODE) and\
+        not is_current_grad(subs_permits)
 
 
 def is_current_undergrad(subs_permits):
@@ -73,7 +74,8 @@ def is_current_undergrad(subs_permits):
 def is_former_undergrad(subs_permits):
     return _has_desired_permit(subs_permits,
                                SubscriptionPermit.UNDERGRAD_C_CODE,
-                               SubscriptionPermit.FORMER_STATUS_CODE)
+                               SubscriptionPermit.FORMER_STATUS_CODE) and\
+        not is_current_undergrad(subs_permits)
 
 
 def is_current_staff(subs_permits):
@@ -85,7 +87,8 @@ def is_current_staff(subs_permits):
 def is_former_staff(subs_permits):
     return _has_desired_permit(subs_permits,
                                SubscriptionPermit.STAFF_C_CODE,
-                               SubscriptionPermit.FORMER_STATUS_CODE)
+                               SubscriptionPermit.FORMER_STATUS_CODE) and\
+        not is_current_staff(subs_permits)
 
 
 def is_current_faculty(subs_permits):
@@ -97,7 +100,8 @@ def is_current_faculty(subs_permits):
 def is_former_faculty(subs_permits):
     return _has_desired_permit(subs_permits,
                                SubscriptionPermit.FACULTY_C_CODE,
-                               SubscriptionPermit.FORMER_STATUS_CODE)
+                               SubscriptionPermit.FORMER_STATUS_CODE) and\
+        not is_current_faculty(subs_permits)
 
 
 def is_current_student_employee(subs_permits):
@@ -109,7 +113,8 @@ def is_current_student_employee(subs_permits):
 def is_former_student_employee(subs_permits):
     return _has_desired_permit(subs_permits,
                                SubscriptionPermit.STUDENT_EMPLOYEE_C_CODE,
-                               SubscriptionPermit.FORMER_STATUS_CODE)
+                               SubscriptionPermit.FORMER_STATUS_CODE) and\
+        not is_current_student_employee(subs_permits)
 
 
 def is_current_clinician(subs_permits):
@@ -122,12 +127,13 @@ def is_current_clinician(subs_permits):
 
 
 def is_former_clinician(subs_permits):
-    return _has_desired_permit(subs_permits,
-                               SubscriptionPermit.CLINICIAN_C_CODE,
-                               SubscriptionPermit.FORMER_STATUS_CODE) or\
-        _has_desired_permit(subs_permits,
-                            SubscriptionPermit.CLINICIAN_NETID_C_CODE,
-                            SubscriptionPermit.FORMER_STATUS_CODE)
+    return (_has_desired_permit(subs_permits,
+                                SubscriptionPermit.CLINICIAN_C_CODE,
+                                SubscriptionPermit.FORMER_STATUS_CODE) or
+            _has_desired_permit(subs_permits,
+                                SubscriptionPermit.CLINICIAN_NETID_C_CODE,
+                                SubscriptionPermit.FORMER_STATUS_CODE)) and\
+        not is_current_clinician(subs_permits)
 
 
 def is_current_retiree(subs_permits):
