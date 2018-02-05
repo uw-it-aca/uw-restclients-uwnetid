@@ -78,6 +78,25 @@ def is_former_undergrad(subs_permits):
         not is_current_undergrad(subs_permits)
 
 
+def is_current_pce(subs_permits):
+    return _has_desired_permit(subs_permits,
+                               SubscriptionPermit.EO_TECHFEE_STUD_C_CODE,
+                               SubscriptionPermit.CURRENT_STATUS_CODE) or\
+        _has_desired_permit(subs_permits,
+                            SubscriptionPermit.EO_NON_TECHFEE_STUD_C_CODE,
+                            SubscriptionPermit.CURRENT_STATUS_CODE)
+
+
+def is_former_pce(subs_permits):
+    return (_has_desired_permit(subs_permits,
+                                SubscriptionPermit.EO_TECHFEE_STUD_C_CODE,
+                                SubscriptionPermit.FORMER_STATUS_CODE) or
+            _has_desired_permit(subs_permits,
+                                SubscriptionPermit.EO_NON_TECHFEE_STUD_C_CODE,
+                                SubscriptionPermit.FORMER_STATUS_CODE)) and\
+        not is_current_pce(subs_permits)
+
+
 def is_current_staff(subs_permits):
     return _has_desired_permit(subs_permits,
                                SubscriptionPermit.STAFF_C_CODE,
