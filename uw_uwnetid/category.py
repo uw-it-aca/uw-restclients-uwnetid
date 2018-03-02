@@ -3,7 +3,7 @@ Interface for interacting with the UWNetID Category Web Service.
 """
 import logging
 import json
-from uw_uwnetid import url_base, get_resource, post_resource
+from uw_uwnetid import url_version, url_base, get_resource, post_resource
 from uw_uwnetid.models import Category
 
 
@@ -25,7 +25,7 @@ def update_catagory(netid, category_code, status):
     Post a subscriptionfor the given netid
     and category_code
     """
-    url = _netid_category_url(netid, category_code)
+    url = "%s/category" % (url_version())
     body = {
         "categoryCode": category_code,
         "status": status,
