@@ -8,11 +8,17 @@ import json
 from dateutil.parser import parse
 from pytimeparse.timeparse import timeparse
 from uw_uwnetid.models import UwPassword
-from uw_uwnetid import get_resource
+from uw_uwnetid import url_base, get_resource
 
 
 logger = logging.getLogger(__name__)
-URL = "/nws/v1/uwnetid/%s/password"
+
+
+def _netid_password_url(netid):
+    """
+    Return UWNetId resource URL for provided netid
+    """
+    return "%s/%s/password" % (url_base(), netid)
 
 
 def get_uwnetid_password(netid):
@@ -20,7 +26,7 @@ def get_uwnetid_password(netid):
     Return a restclients.models.uwnetid.PassWord object
     on the given uwnetid
     """
-    return _process_json(get_resource(URL % netid))
+    return _process_json(get_resource(_netid_password_url(netid)))
 
 
 def _process_json(response_body):
