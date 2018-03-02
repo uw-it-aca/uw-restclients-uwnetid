@@ -5,6 +5,7 @@ the uwnetid subscription web service.
 
 import logging
 import json
+from commonconf import settings
 from restclients_core.exceptions import DataFailureException
 from uw_uwnetid.dao import UWNetID_DAO
 
@@ -12,6 +13,15 @@ from uw_uwnetid.dao import UWNetID_DAO
 INVALID_USER_MSG = "No such NetID"
 DAO = UWNetID_DAO()
 logger = logging.getLogger(__name__)
+
+
+def url_version():
+    return '/nws/%s' % (
+        getattr(settings, 'RESTCLIENTS_UWNETID_VERSION', 'v1'))
+
+
+def url_base():
+    return '%s/uwnetid' % (url_version())
 
 
 def get_resource(url):

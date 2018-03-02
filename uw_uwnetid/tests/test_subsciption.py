@@ -110,7 +110,13 @@ class NetidSubscriptionTest(TestCase):
 @fdao_uwnetid_override
 class NetidPostSubscriptionTest(TestCase):
     def test_update_subscription(self):
-        subscriptions = update_subscription('javerage', 'Modify', 233)
+        subscriptions = update_subscription(
+            'javerage', 'Modify', 233, data_field={
+                "category": 0,
+                "dataValue": "updated by service",
+                "replace": True,
+                "status": 0
+            })
         self.assertEquals(len(subscriptions), 1)
         self.assertEquals(subscriptions[0].subscription_code, 233)
         self.assertEquals(subscriptions[0].status_code, 20)
