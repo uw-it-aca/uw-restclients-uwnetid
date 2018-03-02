@@ -83,7 +83,7 @@ def update_subscription(netid, action, subscription_code, data_field=None):
     if isinstance(data_field, tuple) and len(data_field) == 2:
         action[data_field[0]] = str(data_field[1])
     elif isinstance(data_field, dict):
-        for k, v in data_field.iteritems():
+        for (k, v) in data_field.items():
             action[k] = v
 
     body = {'actionList': [action]}
