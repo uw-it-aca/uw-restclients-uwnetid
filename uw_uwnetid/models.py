@@ -1,4 +1,5 @@
 from restclients_core import models
+from dateutil.parser import parse
 
 
 class UwEmailForwarding(models.Model):
@@ -268,6 +269,69 @@ class SubscriptionAction(models.Model):
 
     def json_data(self):
         return self.action
+
+
+class Category(models.Model):
+    STATUS_ACTIVE = 1
+    STATUS_GRACE = 2
+    STATUS_FORMER = 3
+
+    STATUS_CHOICES = (
+        (STATUS_ACTIVE, "Active"),
+        (STATUS_GRACE, "Grace"),
+        (STATUS_FORMER, "Former"),
+    )
+
+    uwnetid = models.SlugField(max_length=16,
+                               db_index=True,
+                               unique=True)
+    category_code = models.SmallIntegerField(null=True)
+    category_name = models.CharField(max_length=64, null=True)
+    expiration = models.DateField(null=True)
+    notify_code = models.SmallIntegerField(null=True)
+    notify_date = models.DateField(null=True)
+    source_code = models.SmallIntegerField(null=True)
+    source_name = models.CharField(max_length=32, null=True)
+    status_code = models.SmallIntegerField(choices=STATUS_CHOICES)
+    status_name = models.CharField(max_length=12, null=True)
+
+    def from_json(self, uwnetid, data):
+        self.uwnetid = uwnetid
+        self.category_code = int(data['categoryCode'])
+        self.category_name = data['categoryName']
+        self.expiration = parse(data['expiration']) if (
+            'expiration') in data else None
+        self.notify_code = int(data['notifyCode']) if (
+            'notifyCode' in data) else None
+        self.notify_date = parse(data['notifyDate']) if (
+            'notifyDate') in data else None
+        self.source_code = int(data['sourceCode'])
+        self.source_name = data['sourceName']
+        self.status_code = int(data['statusCode'])
+        self.status_name = data['statusName']
+        return self
+
+    def json_data(self):
+        data = {
+            'uwNetID': self.uwnetid,
+            'categoryCode': self.category_code,
+            'categoryName': self.category_name,
+            'expiration': self.expiration,
+            'notifyCode': self.notify_code,
+            'notifyDate': self.notify_date,
+            'sourceCode': self.source_code,
+            'sourceName': self.source_name,
+            'statusCode': self.status_code,
+            'statusName': self.status_name
+        }
+
+        return data
+
+    def __str__(self):
+        return "{category: %s, %s: %s, %s: %s, %s: %s, %s: %s}" % (
+            self.category_code, self.category_name, self.expiration,
+            self.notify_code, self.notify_date, self.source_code,
+            self.source_name, self.status_code, self.status_name)
 
 
 def convert_seconds_to_days(interval):
