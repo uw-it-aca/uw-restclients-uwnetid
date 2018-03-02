@@ -3,7 +3,7 @@ Interface for interacting with the UWNetID Category Web Service.
 """
 import logging
 import json
-from uw_uwnetid import get_resource, post_resource
+from uw_uwnetid import url_base, get_resource, post_resource
 from uw_uwnetid.models import Category
 
 
@@ -41,10 +41,11 @@ def _netid_category_url(netid, category_codes):
     Return UWNetId resource for provided netid and category
     code or code list
     """
-    return "/nws/v1/uwnetid/%s/category/%s" % (
-        netid, (','.join([str(n) for n in category_codes])
-                if isinstance(category_codes, (list, tuple))
-                else category_codes))
+    return "%s/%s/category/%s" % (
+        url_base(), netid,
+        (','.join([str(n) for n in category_codes])
+         if isinstance(category_codes, (list, tuple))
+         else category_codes))
 
 
 def _json_to_categories(response_body):
