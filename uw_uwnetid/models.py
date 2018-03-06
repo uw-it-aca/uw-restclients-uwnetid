@@ -31,6 +31,7 @@ class UwEmailForwarding(models.Model):
 
 
 class Subscription(models.Model):
+    SUBS_OFFICE_356_PILOT = 59
     SUBS_CODE_KERBEROS = 60
     SUBS_CODE_2FA = 64
     SUBS_CODE_U_FORWARDING = 105
@@ -40,6 +41,7 @@ class Subscription(models.Model):
     SUBS_CODE_OFFICE_365_TEST = 234
     SUBS_CODE_PROJECT_SERVER_ONLINE_USER_ACCESS = 237
     SUBS_CODE_PROJECT_SERVER_ONLINE_USER_ACCESS_TEST = 238
+    SUBS_CODE_OFFICE_365_ADDEE = 251
 
     STATUS_ACTIVE = 20
     STATUS_EXPIRED = 21
@@ -272,6 +274,9 @@ class SubscriptionAction(models.Model):
 
 
 class Category(models.Model):
+    GOOGLE_SUITE_ENDORSEE = 234
+    OFFICE_365_ENDORSEE = 235
+
     STATUS_ACTIVE = 1
     STATUS_GRACE = 2
     STATUS_FORMER = 3
