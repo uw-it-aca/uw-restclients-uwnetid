@@ -74,6 +74,22 @@ def update_subscription(netid, action, subscription_code, data_field=None):
     Post a subscription action for the given netid and subscription_code
     """
     url = '%s/subscription.json' % (url_version())
+    action_list = []
+
+    if isinstance(subscription_code, list):
+        for code in subscription_code:
+            action_list.append(_set_action(
+                netid, action, code, data_field))
+    else:
+        action_list.append(_set_action(
+            netid, action, subscription_code, data_field))
+
+    body = {'actionList': action_list}
+    response = post_resource(url, json.dumps(body))
+    return _json_to_subscriptions(response)
+
+
+def _set_action(netid, action, subscription_code, data_field):
     action = {
         'uwNetID': netid,
         'action': action,
@@ -86,9 +102,7 @@ def update_subscription(netid, action, subscription_code, data_field=None):
         for (k, v) in data_field.items():
             action[k] = v
 
-    body = {'actionList': [action]}
-    response = post_resource(url, json.dumps(body))
-    return _json_to_subscriptions(response)
+    return action
 
 
 def _netid_subscription_url(netid, subscription_codes):
