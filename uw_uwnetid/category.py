@@ -33,7 +33,7 @@ def update_catagory(netid, category_code, status):
     }
 
     response = post_resource(url, json.dumps(body))
-    return _json_to_categories(response)
+    return json.loads(response)
 
 
 def _netid_category_url(netid, category_codes):
