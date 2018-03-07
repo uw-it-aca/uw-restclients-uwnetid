@@ -28,6 +28,56 @@
           "statusName" : "current"
         }
       ]
+    },
+    {
+      "subscriptionCode" : 59,
+      "subscriptionName" : "UW Office 365 Education",
+      "permitted" : true,
+      "statusCode" : 20,
+      "statusName" : "Active",
+      "actions" : [
+        "Show"
+      ],
+      "permits" : [
+        {
+          "type" : "permit",
+          "mode" : "implicit",
+          "categoryCode" : 1,
+          "categoryName" : "Undergraduate",
+          "statusCode" : 1,
+          "statusName" : "current"
+        },
+        {
+          "type" : "permit",
+          "mode" : "implicit",
+          "categoryCode" : 16,
+          "categoryName" : "Alumni",
+          "statusCode" : 1,
+          "statusName" : "current"
+        }
+      ]
+    },
+    {
+      "subscriptionCode" : 251,
+      "subscriptionName" : "UW Office 365 Education",
+      "permitted" : true,
+      "statusCode" : 20,
+      "statusName" : "Active",
+      "actions" : [
+        "Show"
+      ],
+      "permits" : []
+    },
+    {
+      "subscriptionCode" : 20,
+      "subscriptionName" : "UW Google Apps",
+      "permitted" : true,
+      "statusCode" : 20,
+      "statusName" : "Active",
+      "actions" : [
+        "Show"
+      ],
+      "permits" : []
     }
   ],
   "timeStamp" : "Fri, 25 Jul 2014 13:24:03 -0700"
