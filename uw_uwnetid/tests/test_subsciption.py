@@ -117,7 +117,7 @@ class NetidPostSubscriptionTest(TestCase):
                 "replace": True,
                 "status": 0
             })
-        self.assertEquals(len(subscriptions), 1)
+        self.assertEquals(len(subscriptions), 4)
         self.assertEquals(subscriptions[0].subscription_code, 233)
         self.assertEquals(subscriptions[0].status_code, 20)
         self.assertEquals(len(subscriptions[0].actions), 1)
@@ -131,7 +131,7 @@ class NetidPostSubscriptionTest(TestCase):
                 "replace": True,
                 "status": 0
             })
-        self.assertEquals(len(subscriptions), 1)
+        self.assertEquals(len(subscriptions), 4)
         self.assertEquals(subscriptions[0].subscription_code, 233)
         self.assertEquals(subscriptions[0].status_code, 20)
         self.assertEquals(len(subscriptions[0].actions), 1)
