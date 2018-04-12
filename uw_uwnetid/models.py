@@ -155,6 +155,27 @@ class Subscription(models.Model):
             "status_name", self.status_name)
 
 
+class SubscriptionPostResponse(models.Model):
+    uwnetid = models.SlugField(max_length=16,
+                               db_index=True,
+                               unique=True)
+    time_stamp = models.DateTimeField()
+    action = models.CharField(max_length=12)
+    result = models.CharField(max_length=16)
+    http_status = models.SmallIntegerField()
+    more_info = models.CharField(max_length=512)
+
+    def from_json(self, uwnetid, data):
+        self.uwnetid = uwnetid
+        self.time_stamp = data['timeStamp']
+        self.action = data['action']
+        self.result = data['result']
+        self.http_status = int(data['httpStatus'])
+        self.more_info = data['moreInfo']
+        self.query = data['query']
+        return self
+
+
 class SubscriptionPermit(models.Model):
     UNDERGRAD_C_CODE = 1
     GRAD_C_CODE = 2

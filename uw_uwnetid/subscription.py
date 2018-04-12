@@ -5,8 +5,8 @@ Interface for interacting with the UWNetID Subscription Web Service.
 from datetime import datetime
 import logging
 import json
-from uw_uwnetid.models import UwEmailForwarding, \
-    Subscription, SubscriptionAction, SubscriptionPermit
+from uw_uwnetid.models import (
+    UwEmailForwarding, Subscription, SubscriptionPostResponse)
 from uw_uwnetid import url_version, url_base, get_resource, post_resource
 
 
@@ -86,7 +86,7 @@ def update_subscription(netid, action, subscription_code, data_field=None):
 
     body = {'actionList': action_list}
     response = post_resource(url, json.dumps(body))
-    return _json_to_subscriptions(response)
+    return _json_to_subscription_post_response(response)
 
 
 def _set_action(netid, action, subscription_code, data_field):
@@ -128,3 +128,16 @@ def _json_to_subscriptions(response_body):
             data.get('uwNetID'), subscription_data))
 
     return subscriptions
+
+
+def _json_to_subscription_post_response(response_body):
+    """
+    Returns a list of SubscriptionPostResponse objects
+    """
+    data = json.loads(response_body)
+    response_list = []
+    for response_data in data.get("responseList", []):
+        response_list.append(SubscriptionPostResponse().from_json(
+            data.get('uwNetID'), response_data))
+
+    return response_list
