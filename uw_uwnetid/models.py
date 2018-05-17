@@ -476,3 +476,42 @@ class UwPassword(models.Model):
 
     class Meta:
         db_table = "restclients_uwnetid_password"
+
+
+class Supported(models.Model):
+    name = models.SlugField(max_length=64,
+                            db_index=True,
+                            unique=True)
+    role = models.SlugField(max_length=16)
+    netid_type = models.SlugField(max_length=16, null=True)
+    status = models.SlugField(max_length=16, null=True)
+
+    def is_shared_netid(self):
+        return self.netid_type == 'shared'
+
+    def is_owner(self):
+        return self.role == 'owner' or self.role == 'owner-admin'
+
+    def is_admin(self):
+        return self.role == 'administrator' or self.role == 'owner-admin'
+
+    def from_json(self, data):
+        self.name = data['name']
+        self.role = data['role']
+        self.netid_type = data.get('netidType')
+        self.status = data.get('status')
+        return self
+
+    def json_data(self):
+        return {
+            'name': self.name,
+            'role': self.role,
+            'netidType': self.netid_type,
+            'status': self.status
+        }
+
+    def __str__(self):
+        return "%s" % self.json_data()
+
+    class Meta:
+        db_table = "restclients_uwnetid_supported"
