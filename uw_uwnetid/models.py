@@ -1,4 +1,5 @@
 from restclients_core import models
+from dateutil.parser import parse
 
 
 class UwEmailForwarding(models.Model):
@@ -30,6 +31,7 @@ class UwEmailForwarding(models.Model):
 
 
 class Subscription(models.Model):
+    SUBS_OFFICE_356_PILOT = 59
     SUBS_CODE_KERBEROS = 60
     SUBS_CODE_2FA = 64
     SUBS_CODE_U_FORWARDING = 105
@@ -39,6 +41,7 @@ class Subscription(models.Model):
     SUBS_CODE_OFFICE_365_TEST = 234
     SUBS_CODE_PROJECT_SERVER_ONLINE_USER_ACCESS = 237
     SUBS_CODE_PROJECT_SERVER_ONLINE_USER_ACCESS_TEST = 238
+    SUBS_CODE_OFFICE_365_ADDEE = 251
 
     STATUS_ACTIVE = 20
     STATUS_EXPIRED = 21
@@ -150,6 +153,27 @@ class Subscription(models.Model):
             "permitted", self.permitted,
             "status_code", self.status_code,
             "status_name", self.status_name)
+
+
+class SubscriptionPostResponse(models.Model):
+    uwnetid = models.SlugField(max_length=16,
+                               db_index=True,
+                               unique=True)
+    time_stamp = models.DateTimeField()
+    action = models.CharField(max_length=12)
+    result = models.CharField(max_length=16)
+    http_status = models.SmallIntegerField()
+    more_info = models.CharField(max_length=512)
+
+    def from_json(self, uwnetid, data):
+        self.uwnetid = uwnetid
+        self.time_stamp = data['timeStamp']
+        self.action = data['action']
+        self.result = data['result']
+        self.http_status = int(data['httpStatus'])
+        self.more_info = data['moreInfo']
+        self.query = data['query']
+        return self
 
 
 class SubscriptionPermit(models.Model):
@@ -270,6 +294,72 @@ class SubscriptionAction(models.Model):
         return self.action
 
 
+class Category(models.Model):
+    GOOGLE_SUITE_ENDORSEE = 234
+    OFFICE_365_ENDORSEE = 235
+
+    STATUS_ACTIVE = 1
+    STATUS_GRACE = 2
+    STATUS_FORMER = 3
+
+    STATUS_CHOICES = (
+        (STATUS_ACTIVE, "Active"),
+        (STATUS_GRACE, "Grace"),
+        (STATUS_FORMER, "Former"),
+    )
+
+    uwnetid = models.SlugField(max_length=16,
+                               db_index=True,
+                               unique=True)
+    category_code = models.SmallIntegerField(null=True)
+    category_name = models.CharField(max_length=64, null=True)
+    expiration = models.DateField(null=True)
+    notify_code = models.SmallIntegerField(null=True)
+    notify_date = models.DateField(null=True)
+    source_code = models.SmallIntegerField(null=True)
+    source_name = models.CharField(max_length=32, null=True)
+    status_code = models.SmallIntegerField(choices=STATUS_CHOICES)
+    status_name = models.CharField(max_length=12, null=True)
+
+    def from_json(self, uwnetid, data):
+        self.uwnetid = uwnetid
+        self.category_code = int(data['categoryCode'])
+        self.category_name = data['categoryName']
+        self.expiration = parse(data['expiration']) if (
+            'expiration') in data else None
+        self.notify_code = int(data['notifyCode']) if (
+            'notifyCode' in data) else None
+        self.notify_date = parse(data['notifyDate']) if (
+            'notifyDate') in data else None
+        self.source_code = int(data['sourceCode'])
+        self.source_name = data['sourceName']
+        self.status_code = int(data['statusCode'])
+        self.status_name = data['statusName']
+        return self
+
+    def json_data(self):
+        data = {
+            'uwNetID': self.uwnetid,
+            'categoryCode': self.category_code,
+            'categoryName': self.category_name,
+            'expiration': self.expiration,
+            'notifyCode': self.notify_code,
+            'notifyDate': self.notify_date,
+            'sourceCode': self.source_code,
+            'sourceName': self.source_name,
+            'statusCode': self.status_code,
+            'statusName': self.status_name
+        }
+
+        return data
+
+    def __str__(self):
+        return "{category: %s, %s: %s, %s: %s, %s: %s, %s: %s}" % (
+            self.category_code, self.category_name, self.expiration,
+            self.notify_code, self.notify_date, self.source_code,
+            self.source_name, self.status_code, self.status_name)
+
+
 def convert_seconds_to_days(interval):
     return interval/60/60/24
 
@@ -386,3 +476,42 @@ class UwPassword(models.Model):
 
     class Meta:
         db_table = "restclients_uwnetid_password"
+
+
+class Supported(models.Model):
+    name = models.SlugField(max_length=64,
+                            db_index=True,
+                            unique=True)
+    role = models.SlugField(max_length=16)
+    netid_type = models.SlugField(max_length=16, null=True)
+    status = models.SlugField(max_length=16, null=True)
+
+    def is_shared_netid(self):
+        return self.netid_type == 'shared'
+
+    def is_owner(self):
+        return self.role == 'owner' or self.role == 'owner-admin'
+
+    def is_admin(self):
+        return self.role == 'administrator' or self.role == 'owner-admin'
+
+    def from_json(self, data):
+        self.name = data['name']
+        self.role = data['role']
+        self.netid_type = data.get('netidType')
+        self.status = data.get('status')
+        return self
+
+    def json_data(self):
+        return {
+            'name': self.name,
+            'role': self.role,
+            'netidType': self.netid_type,
+            'status': self.status
+        }
+
+    def __str__(self):
+        return "%s" % self.json_data()
+
+    class Meta:
+        db_table = "restclients_uwnetid_supported"

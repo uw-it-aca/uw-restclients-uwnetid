@@ -5,9 +5,9 @@ Interface for interacting with the UWNetID Subscription Web Service.
 from datetime import datetime
 import logging
 import json
-from uw_uwnetid.models import UwEmailForwarding, \
-    Subscription, SubscriptionAction, SubscriptionPermit
-from uw_uwnetid import get_resource, post_resource
+from uw_uwnetid.models import (
+    UwEmailForwarding, Subscription, SubscriptionPostResponse)
+from uw_uwnetid import url_version, url_base, get_resource, post_resource
 
 
 logger = logging.getLogger(__name__)
@@ -73,7 +73,23 @@ def update_subscription(netid, action, subscription_code, data_field=None):
     """
     Post a subscription action for the given netid and subscription_code
     """
-    url = '/nws/v1/subscription.json'
+    url = '%s/subscription.json' % (url_version())
+    action_list = []
+
+    if isinstance(subscription_code, list):
+        for code in subscription_code:
+            action_list.append(_set_action(
+                netid, action, code, data_field))
+    else:
+        action_list.append(_set_action(
+            netid, action, subscription_code, data_field))
+
+    body = {'actionList': action_list}
+    response = post_resource(url, json.dumps(body))
+    return _json_to_subscription_post_response(response)
+
+
+def _set_action(netid, action, subscription_code, data_field):
     action = {
         'uwNetID': netid,
         'action': action,
@@ -82,10 +98,11 @@ def update_subscription(netid, action, subscription_code, data_field=None):
 
     if isinstance(data_field, tuple) and len(data_field) == 2:
         action[data_field[0]] = str(data_field[1])
+    elif isinstance(data_field, dict):
+        for (k, v) in data_field.items():
+            action[k] = v
 
-    body = {'actionList': [action]}
-    response = post_resource(url, json.dumps(body))
-    return _json_to_subscriptions(response)
+    return action
 
 
 def _netid_subscription_url(netid, subscription_codes):
@@ -93,10 +110,11 @@ def _netid_subscription_url(netid, subscription_codes):
     Return UWNetId resource for provided netid and subscription
     code or code list
     """
-    return "/nws/v1/uwnetid/%s/subscription/%s" % (
-        netid, (','.join([str(n) for n in subscription_codes])
-                if isinstance(subscription_codes, (list, tuple))
-                else subscription_codes))
+    return "%s/%s/subscription/%s" % (
+        url_base(), netid,
+        (','.join([str(n) for n in subscription_codes])
+         if isinstance(subscription_codes, (list, tuple))
+         else subscription_codes))
 
 
 def _json_to_subscriptions(response_body):
@@ -110,3 +128,16 @@ def _json_to_subscriptions(response_body):
             data.get('uwNetID'), subscription_data))
 
     return subscriptions
+
+
+def _json_to_subscription_post_response(response_body):
+    """
+    Returns a list of SubscriptionPostResponse objects
+    """
+    data = json.loads(response_body)
+    response_list = []
+    for response_data in data.get("responseList", []):
+        response_list.append(SubscriptionPostResponse().from_json(
+            data.get('uwNetID'), response_data))
+
+    return response_list

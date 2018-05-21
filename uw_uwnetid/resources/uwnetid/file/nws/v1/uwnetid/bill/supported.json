@@ -1,0 +1,129 @@
+{
+  "uwNetID": "bill",
+  "supportedList": [
+    {
+      "name": "a_br11",
+      "role": "administrator",
+      "netidType": "shared"
+    },
+    {
+      "name": "a_vida_tools",
+      "role": "administrator",
+      "netidType": "shared"
+    },
+    {
+      "name": "javerage",
+      "role": "supporter"
+    },
+    {
+      "name": "eadm_bill",
+      "role": "owner",
+      "netidType": "administrator"
+    },
+    {
+      "name": "emailinfo",
+      "role": "owner-admin",
+      "netidType": "shared"
+    },
+    {
+      "name": "bill",
+      "role": "supporter"
+    },
+    {
+      "name": "bill-admin",
+      "role": "owner",
+      "netidType": "shared"
+    },
+    {
+      "name": "bill2",
+      "role": "owner",
+      "netidType": "shared"
+    },
+    {
+      "name": "bill3",
+      "role": "owner",
+      "netidType": "shared"
+    },
+    {
+      "name": "kool",
+      "role": "supporter"
+    },
+    {
+      "name": "monitoring",
+      "role": "owner-admin",
+      "netidType": "shared"
+    },
+    {
+      "name": "nebionotic",
+      "role": "owner-admin",
+      "netidType": "shared"
+    },
+    {
+      "name": "nebulus",
+      "role": "administrator",
+      "netidType": "shared"
+    },
+    {
+      "name": "org-mopen",
+      "role": "owner",
+      "netidType": "support"
+    },
+    {
+      "name": "org-nebclose",
+      "role": "owner",
+      "netidType": "support"
+    },
+    {
+      "name": "org-uxxi",
+      "role": "owner",
+      "netidType": "support"
+    },
+    {
+      "name": "pcppmp",
+      "role": "owner-admin",
+      "netidType": "shared"
+    },
+    {
+      "name": "pmxtest01",
+      "role": "owner-admin",
+      "netidType": "shared"
+    },
+    {
+      "name": "pppmsrc",
+      "role": "owner-admin",
+      "netidType": "shared"
+    },
+    {
+      "name": "sadm_bill",
+      "role": "owner",
+      "netidType": "administrator"
+    },
+    {
+      "name": "sophosav",
+      "role": "administrator",
+      "netidType": "shared"
+    },
+    {
+      "name": "xware",
+      "role": "administrator",
+      "netidType": "shared",
+      "status": "former"
+    },
+    {
+      "name": "uxxi-blog",
+      "role": "administrator",
+      "netidType": "shared"
+    },
+    {
+      "name": "wadm_bill",
+      "role": "owner",
+      "netidType": "administrator"
+    },
+    {
+      "name": "windowsinfrastructure",
+      "role": "administrator",
+      "netidType": "shared"
+    }
+  ],
+  "timeStamp": "Fri, 20 Feb 2015 16:11:18 -0800"
+}

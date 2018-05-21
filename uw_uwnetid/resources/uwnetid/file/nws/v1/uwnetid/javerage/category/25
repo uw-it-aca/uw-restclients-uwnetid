@@ -1,0 +1,14 @@
+{
+  "uwNetID": "javerage",
+  "categoryList": [
+    {
+      "categoryCode": 25,
+      "categoryName": "Staff",
+      "sourceCode": 1,
+      "sourceName": "UW Human Resources",
+      "statusCode": 1,
+      "statusName": "Active"
+    }
+  ],
+  "timeStamp": "Wed, 28 Jun 2017 10:04:54 -0700"
+}

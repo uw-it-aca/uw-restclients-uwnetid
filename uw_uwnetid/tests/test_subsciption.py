@@ -110,12 +110,18 @@ class NetidSubscriptionTest(TestCase):
 @fdao_uwnetid_override
 class NetidPostSubscriptionTest(TestCase):
     def test_update_subscription(self):
-        subscriptions = update_subscription('javerage', 'Modify', 233)
-        self.assertEquals(len(subscriptions), 1)
-        self.assertEquals(subscriptions[0].subscription_code, 233)
-        self.assertEquals(subscriptions[0].status_code, 20)
-        self.assertEquals(len(subscriptions[0].actions), 1)
-        self.assertEquals(len(subscriptions[0].permits), 2)
+        response_list = update_subscription('javerage', 'activate', 144)
+
+        self.assertEquals(response_list[0].query['subscriptionCode'], '144')
+        self.assertEquals(response_list[0].query['action'], 'activate')
+        self.assertEquals(response_list[0].http_status, 200)
+
+    def test_update_subscriptions(self):
+        response_list = update_subscription('javerage', 'activate', [144])
+
+        self.assertEquals(response_list[0].query['subscriptionCode'], '144')
+        self.assertEquals(response_list[0].query['action'], 'activate')
+        self.assertEquals(response_list[0].http_status, 200)
 
     def test_modify_subscription_status(self):
         subscriptions = modify_subscription_status(
