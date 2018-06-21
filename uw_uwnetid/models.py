@@ -491,7 +491,7 @@ class Supported(models.Model):
     name = models.SlugField(max_length=64,
                             db_index=True,
                             unique=True)
-    role = models.SlugField(max_length=16)
+    role = models.SlugField(max_length=16, null=True)
     netid_type = models.SlugField(max_length=16, null=True)
     status = models.SlugField(max_length=16, null=True)
 
@@ -506,7 +506,7 @@ class Supported(models.Model):
 
     def from_json(self, data):
         self.name = data['name']
-        self.role = data['role']
+        self.role = data.get('role')
         self.netid_type = data.get('netidType')
         self.status = data.get('status')
         return self
