@@ -10,7 +10,7 @@ from restclients_core.exceptions import DataFailureException
 from uw_uwnetid.dao import UWNetID_DAO
 
 
-INVALID_USER_MSG = b"No such NetID"
+INVALID_USER_MSG = "No such NetID"
 DAO = UWNetID_DAO()
 logger = logging.getLogger(__name__)
 
@@ -31,7 +31,7 @@ def get_resource(url):
         raise DataFailureException(url, response.status, response.data)
 
     # 'Bug' with lib API causing requests with no/invalid user to return a 200
-    if INVALID_USER_MSG in response.data:
+    if INVALID_USER_MSG in response.data.decode("utf-8"):
         json_data = json.loads(response.data)
         raise DataFailureException(url, 404, json_data["errorMessage"])
 
