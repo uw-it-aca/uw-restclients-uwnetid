@@ -10,7 +10,7 @@ from restclients_core.exceptions import DataFailureException
 from uw_uwnetid.dao import UWNetID_DAO
 
 
-INVALID_USER_MSG = "No such NetID"
+INVALID_USER_MSG = b"No such NetID"
 DAO = UWNetID_DAO()
 logger = logging.getLogger(__name__)
 
