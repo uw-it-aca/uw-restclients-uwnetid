@@ -26,7 +26,7 @@ def url_base():
 
 def get_resource(url):
     response = DAO.getURL(url, {'Accept': 'application/json'})
-    logger.info("GET %s ==status==> %s" % (url, response.status))
+    logger.debug("GET %s ==status==> %s" % (url, response.status))
     if response.status != 200:
         raise DataFailureException(url, response.status, response.data)
 
@@ -45,7 +45,7 @@ def post_resource(url, body):
         'Content-Type': 'application/json',
         'Acept': 'application/json',
     }, body)
-    logger.info("POST %s ==status==> %s" % (url, response.status))
+    logger.debug("POST %s ==status==> %s" % (url, response.status))
 
     if response.status != 200:
         raise DataFailureException(url, response.status, response.data)
