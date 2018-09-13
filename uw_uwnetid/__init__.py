@@ -16,26 +16,23 @@ logger = logging.getLogger(__name__)
 
 
 def url_version():
-    return '/nws/%s' % (
+    return '/nws/{0}'.format(
         getattr(settings, 'RESTCLIENTS_UWNETID_VERSION', 'v1'))
 
 
 def url_base():
-    return '%s/uwnetid' % (url_version())
+    return '{0}/uwnetid'.format(url_version())
 
 
 def get_resource(url):
     response = DAO.getURL(url, {'Accept': 'application/json'})
-    logger.info("GET %s ==status==> %s" % (url, response.status))
+    logger.debug("GET {0} ==status==> {1}".format(url, response.status))
     if response.status != 200:
         raise DataFailureException(url, response.status, response.data)
 
-    # 'Bug' with lib API causing requests with no/invalid user to return a 200
-    if INVALID_USER_MSG in response.data.decode("utf-8"):
-        json_data = json.loads(response.data)
-        raise DataFailureException(url, 404, json_data["errorMessage"])
+    _test_for_invalid_user(url, response.data)
 
-    logger.debug("GET %s ==data==> %s" % (url, response.data))
+    logger.debug("GET {0} ==data==> {1}".format(url, response.data))
 
     return response.data
 
@@ -45,16 +42,20 @@ def post_resource(url, body):
         'Content-Type': 'application/json',
         'Acept': 'application/json',
     }, body)
-    logger.info("POST %s ==status==> %s" % (url, response.status))
+    logger.debug("POST {0} ==status==> {1}".format(url, response.status))
 
     if response.status != 200:
         raise DataFailureException(url, response.status, response.data)
 
-    # 'Bug' with lib API causing requests with no/invalid user to return a 200
-    if INVALID_USER_MSG in response.data:
-        json_data = json.loads(response.data)
-        raise DataFailureException(url, 404, json_data["errorMessage"])
+    _test_for_invalid_user(url, response.data)
 
-    logger.debug("POST %s ==data==> %s" % (url, response.data))
+    logger.debug("POST {0}s ==data==> {1}".format(url, response.data))
 
     return response.data
+
+
+def _test_for_invalid_user(url, response_data):
+    # 'Bug' with lib API causing requests with no/invalid user to return a 200
+    if INVALID_USER_MSG in "{0}".format(response_data):
+        json_data = json.loads(response_data)
+        raise DataFailureException(url, 404, json_data["errorMessage"])
