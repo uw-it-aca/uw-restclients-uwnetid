@@ -14,7 +14,7 @@ class UWNetID_DAO(DAO):
     def _edit_mock_response(self, method, url, headers, body, response):
         if "POST" == method or "PUT" == method:
             if response.status != 200:
-                path = "%s/resources/uwnetid/file%s.%s" % (
+                path = "{0}/resources/uwnetid/file{1}.{2}".format(
                     abspath(dirname(__file__)), url, method)
 
                 try:
