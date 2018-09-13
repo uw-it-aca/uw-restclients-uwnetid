@@ -73,7 +73,7 @@ def update_subscription(netid, action, subscription_code, data_field=None):
     """
     Post a subscription action for the given netid and subscription_code
     """
-    url = '%s/subscription.json' % (url_version())
+    url = '{0}/subscription.json'.format(url_version())
     action_list = []
 
     if isinstance(subscription_code, list):
@@ -110,7 +110,7 @@ def _netid_subscription_url(netid, subscription_codes):
     Return UWNetId resource for provided netid and subscription
     code or code list
     """
-    return "%s/%s/subscription/%s" % (
+    return "{0}/{1}/subscription/{2}".format(
         url_base(), netid,
         (','.join([str(n) for n in subscription_codes])
          if isinstance(subscription_codes, (list, tuple))

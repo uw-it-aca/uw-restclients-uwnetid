@@ -25,7 +25,7 @@ def update_catagory(netid, category_code, status):
     Post a subscriptionfor the given netid
     and category_code
     """
-    url = "%s/category" % (url_version())
+    url = "{0}/category".format(url_version())
     body = {
         "categoryCode": category_code,
         "status": status,
@@ -41,7 +41,7 @@ def _netid_category_url(netid, category_codes):
     Return UWNetId resource for provided netid and category
     code or code list
     """
-    return "%s/%s/category/%s" % (
+    return "{0}/{1}/category/{2}".format(
         url_base(), netid,
         (','.join([str(n) for n in category_codes])
          if isinstance(category_codes, (list, tuple))
