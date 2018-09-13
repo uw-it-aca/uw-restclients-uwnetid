@@ -25,7 +25,7 @@ def _netid_supported_url(netid):
     Return UWNetId resource for provided netid supported
     resources
     """
-    return "%s/%s/supported.json" % (url_base(), netid)
+    return "{0}/{1}/supported.json".format(url_base(), netid)
 
 
 def _json_to_supported(response_body):
