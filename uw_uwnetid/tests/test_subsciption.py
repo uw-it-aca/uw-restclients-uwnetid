@@ -1,6 +1,7 @@
 from datetime import date
 from unittest import TestCase
 from uw_uwnetid.models import Subscription
+from uw_uwnetid.subscription_105 import get_uwemail_forwarding
 from uw_uwnetid.subscription import get_email_forwarding, \
     get_netid_subscriptions, modify_subscription_status, update_subscription
 from restclients_core.exceptions import DataFailureException
@@ -66,6 +67,15 @@ class EmailForwardingTest(TestCase):
 class NetidSubscriptionTest(TestCase):
 
     def test_get_netid_subscriptions(self):
+        subscriptions = get_netid_subscriptions('phil', [60,64,105])
+        for subscription in subscriptions:
+            if subscription.subscription_code == 105:
+                self.assertEquals(subscription.data_value,
+                                  'phil@gamail.uw.edu')
+                email_forwarding = get_uwemail_forwarding(subscription)
+                self.assertEquals(email_forwarding.fwd,
+                                  'phil@gamail.uw.edu')
+
         subscriptions = get_netid_subscriptions(
             'javerage', [60, 20, 100, 105, 137, 41])
         self.assertEquals(len(subscriptions), 6)
