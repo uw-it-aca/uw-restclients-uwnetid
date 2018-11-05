@@ -18,7 +18,7 @@ def _netid_password_url(netid):
     """
     Return UWNetId resource URL for provided netid
     """
-    return "%s/%s/password" % (url_base(), netid)
+    return "{0}/{1}/password".format(url_base(), netid)
 
 
 def get_uwnetid_password(netid):

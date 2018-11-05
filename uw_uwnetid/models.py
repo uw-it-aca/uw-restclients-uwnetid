@@ -1,3 +1,4 @@
+import json
 from restclients_core import models
 from dateutil.parser import parse
 
@@ -26,7 +27,7 @@ class UwEmailForwarding(models.Model):
                 }
 
     def __str__(self):
-        return "{status: %s, permitted: %s, fwd: %s}" % (
+        return "{status: {0}, permitted: {1}, fwd: {2}}".format(
             self.status, self.permitted, self.fwd)
 
 
@@ -148,12 +149,7 @@ class Subscription(models.Model):
         return data
 
     def __str__(self):
-        return "{netid: %s, %s: %s, %s: %s, %s: %s, %s: %s}" % (
-            self.uwnetid,
-            "subscription_code", self.subscription_code,
-            "permitted", self.permitted,
-            "status_code", self.status_code,
-            "status_name", self.status_name)
+        return json.dumps(self.json_data())
 
 
 class SubscriptionPostResponse(models.Model):
@@ -364,10 +360,7 @@ class Category(models.Model):
         return data
 
     def __str__(self):
-        return "{category: %s, %s: %s, %s: %s, %s: %s, %s: %s}" % (
-            self.category_code, self.category_name, self.expiration,
-            self.notify_code, self.notify_date, self.source_code,
-            self.source_name, self.status_code, self.status_name)
+        return json.dumps(self.json_data())
 
 
 def convert_seconds_to_days(interval):
