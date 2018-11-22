@@ -514,7 +514,7 @@ class Supported(models.Model):
         }
 
     def __str__(self):
-        return "%s" % self.json_data()
+        return json.dumps(self.json_data())
 
     class Meta:
         db_table = "restclients_uwnetid_supported"

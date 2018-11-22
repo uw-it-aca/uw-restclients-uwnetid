@@ -67,7 +67,7 @@ class EmailForwardingTest(TestCase):
 class NetidSubscriptionTest(TestCase):
 
     def test_get_netid_subscriptions(self):
-        subscriptions = get_netid_subscriptions('phil', [60,64,105])
+        subscriptions = get_netid_subscriptions('phil', [60, 64, 105])
         for subscription in subscriptions:
             if subscription.subscription_code == 105:
                 self.assertEquals(subscription.data_value,
