@@ -1,0 +1,174 @@
+{
+  "uwNetID": "phil",
+  "subscriptionList": [
+    {
+      "subscriptionCode": 60,
+      "subscriptionName": "A Kerberos Principal",
+      "permitted": true,
+      "statusCode": 20,
+      "statusName": "Active",
+      "actions": [
+        "Show",
+        "Deactivate",
+        "Suspend"
+      ],
+      "dataField": "KPW",
+      "permits": [
+                {
+                    "categoryCode": 2,
+                    "categoryName": "Graduate",
+                    "mode": "implicit",
+                    "statusCode": 3,
+                    "statusName": "former",
+                    "type": "permit"
+                },
+                {
+                    "categoryCode": 5,
+                    "categoryName": "Faculty",
+                    "mode": "implicit",
+                    "statusCode": 1,
+                    "statusName": "current",
+                    "type": "permit"
+                },
+                {
+                    "categoryCode": 16,
+                    "categoryName": "Alumni",
+                    "mode": "implicit",
+                    "statusCode": 1,
+                    "statusName": "current",
+                    "type": "permit"
+                },
+                {
+                    "categoryCode": 16,
+                    "categoryName": "Alumni",
+                    "mode": "implicit",
+                    "statusCode": 3,
+                    "statusName": "former",
+                    "type": "permit"
+                },
+                {
+                    "categoryCode": 28,
+                    "categoryName": "Development Affiliate",
+                    "mode": "implicit",
+                    "statusCode": 1,
+                    "statusName": "current",
+                    "type": "permit"
+                }
+      ]
+    },
+    {
+      "subscriptionCode": 64,
+      "subscriptionName": "Duo Two-Factor Authentication",
+      "permitted": true,
+      "statusCode": 20,
+      "statusName": "Active",
+      "actions": [
+        "Show",
+        "Deactivate",
+        "Suspend",
+        "Activate"
+      ],
+      "dataValue": "user_id=DUA41DSXCA4R8SIZ71QY",
+      "permits": [
+                         {
+                    "categoryCode": 2,
+                    "categoryName": "Graduate",
+                    "mode": "implicit",
+                    "statusCode": 3,
+                    "statusName": "former",
+                    "type": "permit"
+                },
+                {
+                    "categoryCode": 5,
+                    "categoryName": "Faculty",
+                    "mode": "implicit",
+                    "statusCode": 1,
+                    "statusName": "current",
+                    "type": "permit"
+                },
+                {
+                    "categoryCode": 16,
+                    "categoryName": "Alumni",
+                    "mode": "implicit",
+                    "statusCode": 1,
+                    "statusName": "current",
+                    "type": "permit"
+                },
+                {
+                    "categoryCode": 16,
+                    "categoryName": "Alumni",
+                    "mode": "implicit",
+                    "statusCode": 3,
+                    "statusName": "former",
+                    "type": "permit"
+                },
+                {
+                    "categoryCode": 28,
+                    "categoryName": "Development Affiliate",
+                    "mode": "implicit",
+                    "statusCode": 1,
+                    "statusName": "current",
+                    "type": "permit"
+                }
+      ]
+    },
+    {
+      "subscriptionCode": 105,
+      "subscriptionName": "U Forwarding",
+      "permitted": true,
+      "statusCode": 20,
+      "statusName": "Active",
+      "actions": [
+        "Show",
+        "Deactivate",
+        "Suspend",
+        "Activate"
+      ],
+      "dataField": "FWD",
+      "dataValue": "phil@gamail.uw.edu",
+      "permits": [
+                         {
+                    "categoryCode": 2,
+                    "categoryName": "Graduate",
+                    "mode": "implicit",
+                    "statusCode": 3,
+                    "statusName": "former",
+                    "type": "permit"
+                },
+                {
+                    "categoryCode": 5,
+                    "categoryName": "Faculty",
+                    "mode": "implicit",
+                    "statusCode": 1,
+                    "statusName": "current",
+                    "type": "permit"
+                },
+                {
+                    "categoryCode": 16,
+                    "categoryName": "Alumni",
+                    "mode": "implicit",
+                    "statusCode": 1,
+                    "statusName": "current",
+                    "type": "permit"
+                },
+                {
+                    "categoryCode": 16,
+                    "categoryName": "Alumni",
+                    "mode": "implicit",
+                    "statusCode": 3,
+                    "statusName": "former",
+                    "type": "permit"
+                },
+                {
+                    "categoryCode": 28,
+                    "categoryName": "Development Affiliate",
+                    "mode": "implicit",
+                    "statusCode": 1,
+                    "statusName": "current",
+                    "type": "permit"
+                }
+      ]
+    }
+  ],
+  "timeStamp": "Mon, 05 Nov 2018 13:59:43 -0800"
+}
