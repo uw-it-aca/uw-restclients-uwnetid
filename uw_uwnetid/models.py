@@ -188,6 +188,7 @@ class SubscriptionPermit(models.Model):
     EO_NON_TECHFEE_STUD_C_CODE = 19
     APPLICANT_C_CODE = 20
     RETIREE_C_CODE = 34
+    SYSTEM_ADMIN_C_CODE = 46
     MEDICAL_RESIDENT_C_CODE = 145
     CURRENT_STATUS_CODE = 1
     FORMER_STATUS_CODE = 3
@@ -237,6 +238,9 @@ class SubscriptionPermit(models.Model):
 
     def is_category_retiree(self):
         return self.category_code == SubscriptionPermit.RETIREE_C_CODE
+
+    def is_category_system_administrator(self):
+        return self.category_code == SubscriptionPermit.SYSTEM_ADMIN_C_CODE
 
     def is_status_current(self):
         return self.status_code == SubscriptionPermit.CURRENT_STATUS_CODE
