@@ -179,6 +179,7 @@ class SubscriptionPermit(models.Model):
     STAFF_C_CODE = 4
     FACULTY_C_CODE = 5
     DEPARTMENT_C_CODE = 11
+    COURSE_C_CODE = 12
     CLINICIAN_C_CODE = 13
     STUDENT_EMPLOYEE_C_CODE = 14
     AFFILIATE_EMPLOYEE_C_CODE = 15
@@ -215,6 +216,9 @@ class SubscriptionPermit(models.Model):
 
     def is_category_department(self):
         return self.category_code == SubscriptionPermit.DEPARTMENT_C_CODE
+
+    def is_category_course(self):
+        return self.category_code == SubscriptionPermit.COURSE_C_CODE
 
     def is_category_student_employee(self):
         return (
