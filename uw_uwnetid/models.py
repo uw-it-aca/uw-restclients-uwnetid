@@ -526,3 +526,33 @@ class Supported(models.Model):
 
     class Meta:
         db_table = "restclients_uwnetid_supported"
+
+
+class Admin(models.Model):
+    name = models.SlugField(max_length=64,
+                            db_index=True,
+                            unique=True)
+    role = models.SlugField(max_length=16, null=True)
+
+    def is_owner(self):
+        return self.role == 'owner' or self.role == 'owner-admin'
+
+    def is_admin(self):
+        return self.role == 'administrator' or self.role == 'owner-admin'
+
+    def from_json(self, data):
+        self.name = data['name']
+        self.role = data.get('role')
+        return self
+
+    def json_data(self):
+        return {
+            'name': self.name,
+            'role': self.role
+        }
+
+    def __str__(self):
+        return json.dumps(self.json_data())
+
+    class Meta:
+        db_table = "restclients_uwnetid_admin"
