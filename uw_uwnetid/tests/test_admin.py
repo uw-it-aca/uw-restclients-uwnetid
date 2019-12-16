@@ -9,16 +9,16 @@ class AdminListTest(TestCase):
     def test_get_admins_for_shared_netid(self):
         adminList = get_admins_for_shared_netid('emailinfo')
         self.assertEquals(len(adminList), 2)
-        owner = 0
-        admin = 0
+        owner_count = 0
+        admin_count = 0
         for admin in adminList:
             if admin.is_owner():
-                owner += 1
+                owner_count += 1
             if admin.is_admin():
-                admin += 1
+                admin_count += 1
 
-        self.assertEquals(owner, 1)
-        self.assertEquals(admin, 1)
+        self.assertEquals(owner_count, 1)
+        self.assertEquals(admin_count, 1)
 
     def test_no_admins_for_shared_netid(self):
         try:
