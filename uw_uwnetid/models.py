@@ -1,3 +1,5 @@
+# Copyright 2021 UW-IT, University of Washington
+# SPDX-License-Identifier: Apache-2.0
 import json
 from restclients_core import models
 from dateutil.parser import parse
@@ -35,6 +37,8 @@ class Subscription(models.Model):
     SUBS_OFFICE_356_PILOT = 59
     SUBS_CODE_KERBEROS = 60
     SUBS_CODE_2FA = 64
+    SUBS_CODE_ZOOM_LICENSE_ACCESS = 75
+    SUBS_CODE_ZOOM_BASIC_ACCESS = 76
     SUBS_CODE_CANVAS_STUDENT = 77
     SUBS_CODE_CANVAS_AFFILIATE = 78
     SUBS_CODE_CANVAS_SPONSORED = 79
@@ -315,6 +319,8 @@ class Category(models.Model):
     GOOGLE_SUITE_ENDORSEE = 234
     OFFICE_365_ENDORSEE = 235
     CANVAS_PROVISIONEE = 236
+    ZOOM_LICENSED_PROVISIONEE = 237
+    ZOOM_BASIC_PROVISIONEE = 238
 
     STATUS_ACTIVE = 1
     STATUS_GRACE = 2
