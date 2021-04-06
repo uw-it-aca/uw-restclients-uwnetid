@@ -1,3 +1,5 @@
+# Copyright 2021 UW-IT, University of Washington
+# SPDX-License-Identifier: Apache-2.0
 from unittest import TestCase
 from uw_uwnetid.supported import get_supported_resources
 from uw_uwnetid.util import fdao_uwnetid_override
