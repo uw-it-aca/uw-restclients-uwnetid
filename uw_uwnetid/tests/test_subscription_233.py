@@ -1,3 +1,5 @@
+# Copyright 2021 UW-IT, University of Washington
+# SPDX-License-Identifier: Apache-2.0
 from unittest import TestCase
 from uw_uwnetid.subscription_233 import get_office365edu_prod_subs,\
     get_office365edu_test_subs
