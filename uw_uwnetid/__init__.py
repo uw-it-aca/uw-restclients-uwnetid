@@ -42,7 +42,7 @@ def get_resource(url):
 def post_resource(url, body):
     response = DAO.postURL(url, {
         'Content-Type': 'application/json',
-        'Acept': 'application/json',
+        'Accept': 'application/json',
     }, body)
     logger.debug("POST {0} ==status==> {1}".format(url, response.status))
 
