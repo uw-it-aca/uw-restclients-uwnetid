@@ -1,5 +1,6 @@
-# Copyright 2021 UW-IT, University of Washington
+# Copyright 2022 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
+
 """
 This is the interface for interacting with
 the uwnetid subscription web service.
@@ -42,7 +43,7 @@ def get_resource(url):
 def post_resource(url, body):
     response = DAO.postURL(url, {
         'Content-Type': 'application/json',
-        'Acept': 'application/json',
+        'Accept': 'application/json',
     }, body)
     logger.debug("POST {0} ==status==> {1}".format(url, response.status))
 
