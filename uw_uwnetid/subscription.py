@@ -139,7 +139,7 @@ def _json_to_subscription_post_response(response_body):
     data = json.loads(response_body)
     response_list = []
     for response_data in data.get("responseList", []):
-        response_list.append(SubscriptionPostResponse().from_json(
-            data.get('uwNetID'), response_data))
+        response_list.append(
+            SubscriptionPostResponse().from_json(response_data))
 
     return response_list
