@@ -171,7 +171,7 @@ class SubscriptionPostResponse(models.Model):
     http_status = models.SmallIntegerField()
     more_info = models.CharField(max_length=512)
 
-    def from_json(self, uwnetid, data):
+    def from_json(self, data):
         try:
             self.uwnetid = data['query']['action']
             self.time_stamp = data['timeStamp']
