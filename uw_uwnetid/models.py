@@ -171,14 +171,19 @@ class SubscriptionPostResponse(models.Model):
     http_status = models.SmallIntegerField()
     more_info = models.CharField(max_length=512)
 
-    def from_json(self, uwnetid, data):
-        self.uwnetid = uwnetid
-        self.time_stamp = data['timeStamp']
-        self.action = data['action']
-        self.result = data['result']
-        self.http_status = int(data['httpStatus'])
-        self.more_info = data['moreInfo']
-        self.query = data['query']
+    def from_json(self, data):
+        try:
+            self.uwnetid = data['query']['uwNetID']
+            self.time_stamp = data['timeStamp']
+            self.action = data['query']['action']
+            self.result = data['result']
+            self.http_status = int(data['httpStatus'])
+            self.more_info = data['moreInfo']
+            self.query = data['query']
+        except KeyError:
+            raise Exception(
+                "Malformed Subscription Response: {}".format(data))
+
         return self
 
 
