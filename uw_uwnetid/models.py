@@ -2,6 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 import json
+from datetime import datetime
 from restclients_core import models
 from dateutil.parser import parse
 
@@ -174,7 +175,7 @@ class SubscriptionPostResponse(models.Model):
     def from_json(self, data):
         try:
             self.uwnetid = data['query']['action']
-            self.time_stamp = data['timeStamp']
+            self.time_stamp = data.get('timeStamp', datetime.now())
             self.action = data['query']['action']
             self.result = data['result']
             self.http_status = int(data['httpStatus'])
