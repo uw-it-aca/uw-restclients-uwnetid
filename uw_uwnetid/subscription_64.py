@@ -6,8 +6,8 @@ Interface for interacting with the UWNetID Subscription 64
 """
 
 from uw_uwnetid.models import Subscription
-from uw_uwnetid.subscription import get_netid_subscriptions,\
-    select_subscription
+from uw_uwnetid.subscription import (
+    get_netid_subscriptions, select_subscription)
 
 
 subs_code = Subscription.SUBS_CODE_2FA

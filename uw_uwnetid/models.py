@@ -203,6 +203,7 @@ class SubscriptionPermit(models.Model):
     EO_TECHFEE_STUD_C_CODE = 18
     EO_NON_TECHFEE_STUD_C_CODE = 19
     APPLICANT_C_CODE = 20
+    FORWARDING_NETID_C_CODE = 24
     RETIREE_C_CODE = 34
     SYSTEM_ADMIN_C_CODE = 46
     MEDICAL_RESIDENT_C_CODE = 145
@@ -248,6 +249,9 @@ class SubscriptionPermit(models.Model):
 
     def is_category_clinician_netid_only(self):
         return self.category_code == SubscriptionPermit.CLINICIAN_NETID_C_CODE
+
+    def is_category_forwarding(self):
+        return self.category_code == SubscriptionPermit.FORWARDING_NETID_C_CODE
 
     def is_category_grad(self):
         return self.category_code == SubscriptionPermit.GRAD_C_CODE

@@ -6,8 +6,8 @@ Interface for interacting with the UWNetID Subscription Web Service.
 """
 
 from uw_uwnetid.models import SubscriptionPermit, Subscription
-from uw_uwnetid.subscription import get_netid_subscriptions,\
-    select_subscription
+from uw_uwnetid.subscription import (
+    get_netid_subscriptions, select_subscription)
 
 
 subs_code = Subscription.SUBS_CODE_KERBEROS
