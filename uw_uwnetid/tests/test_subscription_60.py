@@ -88,6 +88,13 @@ class KerberosSubsTest(TestCase):
                                     status_name="former")
         self.assertTrue(permit.is_status_former())
 
+        permit = SubscriptionPermit(mode="implicit",
+                                    category_code=24,
+                                    category_name="Forwarding",
+                                    status_code=1,
+                                    status_name="current")
+        self.assertTrue(permit.is_category_forwarding())
+
     def test_get_kerberos_subs_permits(self):
         permits = get_kerberos_subs_permits("javerage")
         self.assertFalse(is_current_staff(permits))
