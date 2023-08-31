@@ -3,8 +3,8 @@
 
 from datetime import date
 from unittest import TestCase
-from uw_uwnetid.models import UwPassword, convert_seconds_to_days,\
-    convert_days_to_seconds
+from uw_uwnetid.models import (
+    UwPassword, convert_seconds_to_days, convert_days_to_seconds)
 from uw_uwnetid.password import get_uwnetid_password
 from restclients_core.exceptions import DataFailureException
 from uw_uwnetid.util import fdao_uwnetid_override

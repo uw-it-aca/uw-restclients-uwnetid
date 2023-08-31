@@ -9,8 +9,8 @@ from datetime import datetime
 import logging
 import json
 from uw_uwnetid.models import UwEmailForwarding, Subscription
-from uw_uwnetid.subscription import get_netid_subscriptions,\
-    select_subscription
+from uw_uwnetid.subscription import (
+    get_netid_subscriptions, select_subscription)
 
 
 logger = logging.getLogger(__name__)
