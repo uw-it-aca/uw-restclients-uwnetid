@@ -3,12 +3,13 @@
 
 from unittest import TestCase
 from uw_uwnetid.models import SubscriptionPermit
-from uw_uwnetid.subscription_60 import get_kerberos_subs_permits,\
-    is_current_undergrad, is_former_undergrad, is_current_student_employee,\
-    is_current_grad, is_former_grad, is_former_student_employee,\
-    is_current_staff, is_former_staff, get_kerberos_subs, is_former_pce,\
-    is_current_faculty, is_former_faculty, is_current_alumni,\
-    is_current_clinician, is_former_clinician, is_current_retiree
+from uw_uwnetid.subscription_60 import (
+    get_kerberos_subs_permits,
+    is_current_undergrad, is_former_undergrad, is_current_student_employee,
+    is_current_grad, is_former_grad, is_former_student_employee,
+    is_current_staff, is_former_staff, get_kerberos_subs, is_former_pce,
+    is_current_faculty, is_former_faculty, is_current_alumni,
+    is_current_clinician, is_former_clinician, is_current_retiree)
 from restclients_core.exceptions import DataFailureException
 from uw_uwnetid.util import fdao_uwnetid_override
 

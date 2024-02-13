@@ -11,7 +11,7 @@ from restclients_core.exceptions import DataFailureException
 class AdminListTest(TestCase):
     def test_get_admins_for_shared_netid(self):
         adminList = get_admins_for_shared_netid('emailinfo')
-        self.assertEquals(len(adminList), 2)
+        self.assertEqual(len(adminList), 2)
         owner_count = 0
         admin_count = 0
         for admin in adminList:
@@ -20,11 +20,11 @@ class AdminListTest(TestCase):
             if admin.is_admin():
                 admin_count += 1
 
-        self.assertEquals(owner_count, 1)
-        self.assertEquals(admin_count, 1)
+        self.assertEqual(owner_count, 1)
+        self.assertEqual(admin_count, 1)
 
     def test_no_admins_for_shared_netid(self):
         try:
             get_admins_for_shared_netid('foobar')
         except DataFailureException as ex:
-            self.assertEquals(ex.status, 404)
+            self.assertEqual(ex.status, 404)

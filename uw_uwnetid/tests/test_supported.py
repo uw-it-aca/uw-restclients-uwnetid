@@ -11,7 +11,7 @@ from restclients_core.exceptions import DataFailureException
 class SupportedResourcesTest(TestCase):
     def test_supported_netids_for_shared(self):
         supported = get_supported_resources('bill')
-        self.assertEquals(len(supported), 25)
+        self.assertEqual(len(supported), 25)
         shared = 0
         owner = 0
         admin = 0
@@ -23,12 +23,12 @@ class SupportedResourcesTest(TestCase):
                 if support.is_admin():
                     admin += 1
 
-        self.assertEquals(shared, 16)
-        self.assertEquals(owner, 9)
-        self.assertEquals(admin, 13)
+        self.assertEqual(shared, 16)
+        self.assertEqual(owner, 9)
+        self.assertEqual(admin, 13)
 
     def test_no_supported_netids_for_shared(self):
         try:
             supported = get_supported_resources('javerage')
         except DataFailureException as ex:
-            self.assertEquals(ex.status, 404)
+            self.assertEqual(ex.status, 404)
