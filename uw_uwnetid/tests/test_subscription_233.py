@@ -1,9 +1,9 @@
-# Copyright 2023 UW-IT, University of Washington
+# Copyright 2024 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
 from unittest import TestCase
-from uw_uwnetid.subscription_233 import get_office365edu_prod_subs,\
-    get_office365edu_test_subs
+from uw_uwnetid.subscription_233 import (
+    get_office365edu_prod_subs, get_office365edu_test_subs)
 from restclients_core.exceptions import DataFailureException
 from uw_uwnetid.util import fdao_uwnetid_override
 

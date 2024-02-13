@@ -1,4 +1,4 @@
-# Copyright 2023 UW-IT, University of Washington
+# Copyright 2024 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
 """
@@ -9,7 +9,7 @@ from datetime import datetime
 import logging
 import json
 from dateutil.parser import parse
-from pytimeparse.timeparse import timeparse
+from pytimeparse2 import parse as timeparse
 from uw_uwnetid.models import UwPassword
 from uw_uwnetid import url_base, get_resource
 

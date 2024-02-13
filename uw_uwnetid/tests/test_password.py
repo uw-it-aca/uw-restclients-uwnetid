@@ -1,10 +1,11 @@
-# Copyright 2023 UW-IT, University of Washington
+# Copyright 2024 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
 from datetime import date
 from unittest import TestCase
-from uw_uwnetid.models import UwPassword, convert_seconds_to_days,\
-    convert_days_to_seconds
+from uw_uwnetid.models import (
+    UwPassword, convert_seconds_to_days,
+    convert_days_to_seconds)
 from uw_uwnetid.password import get_uwnetid_password
 from restclients_core.exceptions import DataFailureException
 from uw_uwnetid.util import fdao_uwnetid_override
@@ -26,8 +27,8 @@ class UwPasswordTest(TestCase):
         self.assertFalse(pw.is_status_person())
         self.assertFalse(pw.is_active_person())
         pw.netid_status = ["Person", "Active"]
-        self.assertEquals(pw.netid_status[0], "Person")
-        self.assertEquals(pw.netid_status[1], "Active")
+        self.assertEqual(pw.netid_status[0], "Person")
+        self.assertEqual(pw.netid_status[1], "Active")
         self.assertTrue(pw.is_status_active())
         self.assertTrue(pw.is_status_person())
         self.assertTrue(pw.is_active_person())
@@ -55,9 +56,9 @@ class UwPasswordTest(TestCase):
 
     def test_get_uwnetid_password(self):
         pw = get_uwnetid_password("javerage")
-        self.assertEquals(len(pw.netid_status), 2)
-        self.assertEquals(pw.netid_status[0], "Person")
-        self.assertEquals(pw.netid_status[1], "Active")
+        self.assertEqual(len(pw.netid_status), 2)
+        self.assertEqual(pw.netid_status[0], "Person")
+        self.assertEqual(pw.netid_status[1], "Active")
         self.assertTrue(pw.is_active_person())
         self.assertTrue(pw.is_kerb_status_active())
         self.assertEqual(str(pw.last_change), '2015-01-27 10:49:42-08:00')
@@ -67,7 +68,7 @@ class UwPasswordTest(TestCase):
         self.assertEqual(pw.minimum_length, 8)
 
         pw = get_uwnetid_password("bill")
-        self.assertEquals(len(pw.netid_status), 2)
+        self.assertEqual(len(pw.netid_status), 2)
         self.assertTrue(pw.is_kerb_status_active())
         self.assertEqual(str(pw.last_change), '2016-10-13 10:33:52-07:00')
         self.assertEqual(str(pw.time_stamp), '2016-12-16 14:23:11-08:00')

@@ -1,4 +1,4 @@
-# Copyright 2023 UW-IT, University of Washington
+# Copyright 2024 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
 from unittest import TestCase
@@ -12,12 +12,12 @@ class Office365EduSubsTest(TestCase):
 
     def test_get_netid_categories(self):
         cats = get_netid_categories('javerage', [])
-        self.assertEquals(len(cats), 4)
-        self.assertEquals(cats[0].category_code, 4)
-        self.assertEquals(cats[3].status_name, "Active")
+        self.assertEqual(len(cats), 4)
+        self.assertEqual(cats[0].category_code, 4)
+        self.assertEqual(cats[3].status_name, "Active")
 
     def test_get_netid_category_25(self):
         cats = get_netid_categories('javerage', [25])
-        self.assertEquals(len(cats), 1)
-        self.assertEquals(cats[0].category_code, 25)
-        self.assertEquals(cats[0].status_name, "Active")
+        self.assertEqual(len(cats), 1)
+        self.assertEqual(cats[0].category_code, 25)
+        self.assertEqual(cats[0].status_name, "Active")
